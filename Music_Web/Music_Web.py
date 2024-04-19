@@ -3,7 +3,7 @@ import Music_Web.styles.styles as styles
 from Music_Web.components.sidebar import sidebar
 from Music_Web.components.main_section import main_container
 from Music_Web.components.right_section import right_section
-from Music_Web.styles.fonts import Font
+
 
 
 # class State(rx.State):
