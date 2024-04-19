@@ -1,36 +1,45 @@
-"""Welcome to Reflex! This file outlines the steps to create a basic app."""
-
-from rxconfig import config
-
 import reflex as rx
+import Music_Web.styles.styles as styles
+from Music_Web.components.sidebar import sidebar
+from Music_Web.components.main_section import main_container
+from Music_Web.components.right_section import right_section
+from Music_Web.styles.fonts import Font
 
-docs_url = "https://reflex.dev/docs/getting-started/introduction/"
-filename = f"{config.app_name}/{config.app_name}.py"
 
+# class State(rx.State):
+#     sidebar_visible: bool = False
 
-class State(rx.State):
-    """The app state."""
+#     def toogle_sidebar(self):
+#         self.sidebar_visible = not self.sidebar_visible    
 
 
 def index() -> rx.Component:
-    return rx.center(
-        rx.theme_panel(),
-        rx.vstack(
-            rx.heading("Welcome to Reflex!", size="9"),
-            rx.text("Get started by editing ", rx.code(filename)),
-            rx.button(
-                "Check out our docs!",
-                on_click=lambda: rx.redirect(docs_url),
-                size="4",
-            ),
-            rx.logo(),
-            align="center",
-            spacing="7",
-            font_size="2em",
-        ),
-        height="100vh",
+    return rx.grid(
+        sidebar(),
+        main_container(),        
+        right_section(),
+        class_name="container",
+        style=styles.container_style,   
     )
 
+    
+    
+base_style = {
+    "margin": "0",
+    "padding": "0",
+    "box_sizing": "border-box",
+    "font_family": "Roboto",    
+    "background": "linear-gradient(#050505, #18181d)",    
+    "height": "100vh" 
+}
 
-app = rx.App()
+# Create app instance and add index page.
+app = rx.App(
+    style=base_style,
+    stylesheets=[
+        "estilos.css",
+        "https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap",
+        "https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap"
+    ],
+)
 app.add_page(index)
